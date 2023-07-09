@@ -13,7 +13,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t devops-integration .'
+                    sh 'docker build -t pankajvp/test:devops-integration .'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
                 script{
                    withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
-                    sh 'docker push devops-integration'
+                    sh 'docker push pankajvp/test:devops-integration'
                    }
                 }
             }
